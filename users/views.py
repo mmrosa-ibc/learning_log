@@ -4,6 +4,7 @@ from django.urls import reverse
 from .forms import LoginForm
 from django.contrib.auth import authenticate
 from django.contrib.auth import login as authLogin
+from django.contrib.auth import logout
 
 def login(request):
 
@@ -26,3 +27,7 @@ def login(request):
     context = {'form': form, 'error': error }
     return render(request, 'users/login.html', context)
 
+def logout_view(request):
+    '''Faz logout do usuário'''
+    logout(request)
+    return HttpResponseRedirect(reverse('index'))
