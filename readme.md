@@ -94,3 +94,36 @@ docker compose exec web python manage.py createsuperuser
 ```bash
 docker compose exec web python manage.py shell
 ```
+---
+
+# Reutilização de Templates no Django
+
+O Django permite criar templates HTML reutilizáveis, conhecidos como **templates base**. No contexto de páginas que possuem trechos idênticos de HTML, pode-se usar este recurso a fim de promover a reutilização de código e, por consequência, garantir a padronização e a facilidade de manutenção do sistema. 
+
+Por meio das tags de template do Django `{% block content %}`, o código que for definido no template base poderá ser herdado em arquivos que o referenciarem em seu cabeçalho com a tag `{% extends "learning_logs/base.html" %}`, desde que utilizem a tag `{% block content %}` envolvendo o seu conteúdo específico.
+
+---
+
+## Exemplo Prático
+
+### 1. `base.html`
+Este é o esqueleto principal da sua aplicação. Ele carrega a estrutura que se repete (como o topo e o menu) e define onde o conteúdo dinâmico será inserido.
+
+```html
+<a href="{% url 'index' %}"><h1>Learning Log</h1></a>
+
+{% block content %}
+<!-- O conteúdo das outras páginas será injetado aqui -->
+{% endblock content %}
+```
+
+### 2. `index.html`
+Esta é a página específica que herda a estrutura do arquivo base e preenche apenas o bloco de conteúdo que lhe cabe.
+
+```html
+{% extends "learning_logs/base.html" %}
+
+{% block content %}
+<p>Teste de aplicação</p>
+{% endblock content %}
+```
