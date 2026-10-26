@@ -1,16 +1,26 @@
 {% extends "learning_logs/base.html" %}
 
+{% load django_bootstrap5 %}
+
+{% block header %}
+    <h2 class="mt-4 mb-4">Entre com sua conta de login.</h2>
+{% endblock header %}
+
 {% block content %}
 
     {% if error %}
         <p>Seu login e senha estão incorretos. Por favor, tente novamente.</p>
     {% endif %}
 
-    <form action="{% url 'login' %}" method="post">
+    <form action="{% url 'login' %}" method="post" class="form">
         {% csrf_token %}
-        {{ form.as_p }}
+        {% bootstrap_form form %}
 
-        <button name="submit">Entrar</button>
+        <div class="mb-3">
+            <button name="submit" class="btn btn-primary">Entrar</button>
+        </div>
+ 
+        <!-- <input type="hidden" name="next" value="{% url 'index' %}"> -->
     </form>
 
 {% endblock content %}
