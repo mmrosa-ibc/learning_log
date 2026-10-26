@@ -70,29 +70,38 @@ docker compose up
 docker compose exec web python manage.py migrate
 ```
 
-### 4. Criar um novo App
+---
+
+## Comando úteis
+
+### 1. Criar um novo App
 ```bash
 docker compose exec web python manage.py startapp learning_logs
 ```
 
-### 5. Criar o modelo de migration (Detectar alterações nos models)
+### 2. Criar o modelo de migration (Detectar alterações nos models)
 ```bash
 docker compose exec web python manage.py makemigrations learning_logs
 ```
 
-### 6. Aplicar a migration do modelo criado no banco de dados
+### 3. Aplicar a migration do modelo criado no banco de dados
 ```bash
 docker compose exec web python manage.py migrate
 ```
 
-### 7. Criar login e senha para o painel de administrador (Admin)
+### 4. Criar login e senha para o painel de administrador (Admin)
 ```bash
 docker compose exec web python manage.py createsuperuser
 ```
 
-### 8. Abrir o terminal interativo (Shell) do Django
+### 5. Abrir o terminal interativo (Shell) do Django
 ```bash
 docker compose exec web python manage.py shell
+```
+
+### 6. Executar novas migrations
+```bash
+docker compose exec web python manage.py makemigrations nomedoappcommodelalterado
 ```
 ---
 
