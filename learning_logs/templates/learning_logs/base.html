@@ -39,7 +39,7 @@
                     <ul class="navbar-nav ms-auto">
                         {% if user.is_authenticated %}
                         <li class="nav-item">
-                            <span class="navbar-text">Olá, {{ user.username }}</span>
+                            <span class="nav-link">Olá, {{ user.username }}</span>
                         </li>
                         <li class="nav-item">
                             <a class="nav-link" href="{% url 'logout' %}">Sair</a>
@@ -57,7 +57,7 @@
             </div>
         </nav>
         <div class="container">
-            <div>
+            <div class="pb-2 mt-4 mb-2 border-bottom">
                 {% block header %}{% endblock header %}
             </div>
             <div>

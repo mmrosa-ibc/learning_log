@@ -2,11 +2,11 @@
 
 {% block content %}
 
-    <form action="{% url 'register' %}" method="post">
+    <form action="{% url 'register' %}" method="post" class="ul-none">
         {% csrf_token %}
         {{ form.as_p }}
 
-        <button name="submit">Registrar</button>
+        <button name="submit" class="btn btn-primary">Registrar</button>
         <input type="hidden" name="next" value="{% url 'index' %}">
     </form>
 

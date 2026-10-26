@@ -1,31 +1,35 @@
 {% extends "learning_logs/base.html" %}
 
+{% block header %}
+    <h2>{{ topic }}</h2>
+{% endblock header %}
+
 {% block content %}
     <p>Tópico: {{ topic }}</h3>
-
-    <p>Anotações: </p>
 
     <p>
         <a href="{% url 'new_entry' topic.id %}">Adicione uma nova anotação</a>
     </p>
 
-    <ul>
         {% for entry in entries %}
+            <div class="card mb-2">
+                <div class="card-header">
+                    <h6>
+                        {{ entry.date_added | date:'M d, Y H:i'}}
 
-        <li>
-            <p>{{ entry.date_added | date:'M d, Y H:i'}}</p>
-            <p>{{ entry.text }}</p>
-            <p>
-                <a href="{% url 'edit_entry' entry.id %}">Editar anotação</a>
-            </p>
-        </li>
+                        <small>
+                            <a href="{% url 'edit_entry' entry.id %}">Editar anotação</a>
+                        </small>
+                    </h6>
+                    
+                </div>
+                <div>
+                    {{ entry.text | linebreaks }}
+                </div>
+            </div>
 
         {% empty %}
-
-        <li>
-            <p>Não há registro</p>
-        </li>
-
+            Não há registro
         {% endfor %}
-    </ul>
+  
 {% endblock content %}
